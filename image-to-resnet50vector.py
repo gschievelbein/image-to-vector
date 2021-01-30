@@ -2,6 +2,9 @@ import argparse
 import os
 import numpy as np
 from tensorflow import keras
+from tqdm import tqdm
+from PIL import ImageFile
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 
 IMAGE_TARGET_SIZE = (224, 224)
@@ -21,7 +24,7 @@ def main():
 
     model = initialize_model()
     arr = np.empty([len(ids), 2048])
-    for index, id in enumerate(ids):
+    for index, id in enumerate(tqdm(ids)):
         filename = os.path.join(folder, id + '.png')
         image = keras.preprocessing.image.load_img(filename, target_size=IMAGE_TARGET_SIZE)
         vector = image_to_vector(image, model)
