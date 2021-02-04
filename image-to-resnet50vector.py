@@ -32,7 +32,7 @@ def main():
 
     arr = np.array(arr)
 
-    np.save(folder, arr)
+    np.save(folder + '.resnet50', arr)
 
 
 def initialize_model():
